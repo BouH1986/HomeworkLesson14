@@ -1,8 +1,11 @@
+//Список дел
+
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println();
+        System.out.println("Программа планировщик задач");
         System.out.println();
         ToDoList toDoList = new ToDoList();
         Scanner sc = new Scanner(System.in);
@@ -14,9 +17,11 @@ public class Main {
             System.out.println("2. Показать дела");
             System.out.println("3. Удалить дело по номеру");
             System.out.println("4. Удалить дело по названию");
+            System.out.println("5. Удалить дела по ключевому слову");
             try {
                 System.out.print("Ваш выбор: ");
                 int choice = Integer.parseInt(sc.nextLine());
+                System.out.println();
                 String task;
                 switch (choice) {
                     case 0:
@@ -44,12 +49,20 @@ public class Main {
                         toDoList.delName(task);
                         toDoList.showCase();
                         break;
+                    case 5:
+                        System.out.print("Введите ключевое слово: ");
+                        task = sc.nextLine();
+                        toDoList.delKeyWord(task);
+                        toDoList.showCase();
+                        break;
                     default:
-                        System.out.println("Не верное значение");
+                        System.out.println("Неверное значение");
                         toDoList.showCase();
                 }
             } catch (NumberFormatException e) {
+                System.out.println();
                 System.out.println("!!!ВЫ ВВЕЛИ НЕ ЧИСЛО!!!");
+                System.out.println();
             }
         }
     }
