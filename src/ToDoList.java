@@ -1,11 +1,24 @@
 import java.util.ArrayList;
 
 public class ToDoList {
-    private ArrayList<String> toDoList = new ArrayList<>();
+    private final ArrayList<String> toDoList = new ArrayList<>();
 
     public void addCase(String task) {
-        toDoList.add(task);
-        System.out.println("Добавлено!");
+        boolean notExist = true;
+        if (!toDoList.isEmpty()) {
+            for (String str : toDoList) {
+                if (str.equals(task)) {
+                    notExist = false;
+                    break;
+                }
+            }
+        }
+        if (notExist) {
+            toDoList.add(task);
+            System.out.println("Добавлено!");
+        } else {
+            System.out.println("!!!Повторяющаяся задача!!!");
+        }
         System.out.println();
     }
 
@@ -26,7 +39,7 @@ public class ToDoList {
             toDoList.remove(numTask - 1);
             System.out.println("Удалено!");
         } else {
-            System.out.println("Неверный номер задачи");
+            System.out.println("!!!Неверный номер задачи!!!");
         }
         System.out.println();
     }
@@ -36,7 +49,7 @@ public class ToDoList {
             toDoList.remove(task);
             System.out.println("Удалено!");
         } else {
-            System.out.println("Неверное название задачи");
+            System.out.println("!!!Неверное название задачи!!!");
         }
         System.out.println();
     }
@@ -52,7 +65,7 @@ public class ToDoList {
             toDoList.removeAll(removeCollection);
             System.out.println("Удалено!");
         } else {
-            System.out.println("Совпадений нет");
+            System.out.println("!!!Совпадений нет!!!");
         }
         System.out.println();
     }
